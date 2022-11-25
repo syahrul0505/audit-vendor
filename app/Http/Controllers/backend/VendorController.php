@@ -44,7 +44,7 @@ class VendorController extends Controller
         }
     }
 
-    public function create  ()
+    public function create ()
     {
         $data['page_title'] = 'Tanda Terima';
         $data['vendor'] = Vendor::get();
@@ -152,6 +152,26 @@ class VendorController extends Controller
             DB::rollback();
             return redirect()->route('vendor.create')->with('failed','Data Is Not Competible');
         }
+    }
+
+    public function edit($id)
+    {
+        $data['page_title'] = 'Edit List Finance';
+        $data['vendor'] = Vendor::findOrFail($id);
+
+        // dd($data['vendor']->vendorPivot());
+        // $data['vendorpv'] = VendorPivot::findOrFail($id);
+
+        return view('backend.vendor.edit', $data);
+    }
+
+    public function show($id)
+    {
+        $data['page_title'] = 'Show List FInance';
+        $data['vendor'] = Vendor::findOrfail($id);
+        $data['vendor_pivot'] = VendorPivot::get();
+
+        return view('backend.vendor.show', $data);
     }
 
 }
