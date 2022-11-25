@@ -16,7 +16,7 @@ class VendorController extends Controller
         $data['page_title'] = 'List Finance';
         // $data['vendor'] = Vendor::get();
 
-        return view('backend.vendor.index', $data);
+        // return view('backend.vendor.index', $data);
     }
 
     public function checkAccr($ponum,$podate){
@@ -162,7 +162,7 @@ class VendorController extends Controller
         // dd($data['vendor']->vendorPivot());
         // $data['vendorpv'] = VendorPivot::findOrFail($id);
 
-        return view('backend.vendor.edit', $data);
+        // return view('backend.vendor.edit', $data);
     }
 
     public function show($id)
@@ -171,7 +171,7 @@ class VendorController extends Controller
         // $data['vendor'] = Vendor::findOrfail($id);
         // $data['vendor_pivot'] = VendorPivot::get();
 
-        return view('backend.vendor.show', $data);
+        // return view('backend.vendor.show', $data);
     }
 
 }
