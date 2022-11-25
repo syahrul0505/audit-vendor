@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Session;
 
 class VendorController extends Controller
 {
+    public function index()
+    {
+        $data['page_title'] = 'List Finance';
+        $data['vendor'] = Vendor::get();
+
+        return view('backend.vendor.index', $data);
+    }
+
     public function checkAccr($ponum,$podate){
         $conn = curl_init();
         curl_setopt_array($conn, array(

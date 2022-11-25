@@ -21,7 +21,8 @@ use App\Http\Controllers\backend\VendorController;
 
 
 Route::get('/', function () {
-    return view('frontend.vendor.create');
+    return view('frontend.vendor.create')->except([
+        'show','index','edit','delete']);
 })->name('vendor');
 
 // tentang jelantah
