@@ -22,7 +22,7 @@
                         <div class="col-lg-12 col-xl-12 col-sm-12">
                             <div class="card card-primary" style="border-radius:18px;">
                                 <div class="card-header text-center " style="border-radius:10px 10px 0px 0px;">
-                                    {{-- <h4 class="card-title">{{$page_title}}</h4> --}}
+                                    <h4 class="card-title">Tanda Terima</h4>
                                 </div>
                                 <form method="POST" action="{{ route('vendor.store') }}" id="formPO">
                                     @csrf
@@ -58,10 +58,18 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                        <input
-                                                                            class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                                                                            placeholder="No Po" type="text"
-                                                                            name="no_po[]" id="ponum">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-2">
+                                                                                <p><b>PO-</b></p>
+                                                                            </div>
+                                                                            <div class="col-lg-10">
+                                                                                <input
+                                                                                    class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
+                                                                                    placeholder="No Po" type="text"
+                                                                                    name="no_po[]" id="ponum">
+    
+                                                                            </div>
+                                                                        </div>
                                                                     </td>
                                                                     <td>
                                                                         <input
@@ -181,8 +189,8 @@
                             $("#contactTable").find('tbody')
                                 .append(
                                     $('<tr>' +
-                                        '<td><input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' +
-                                        rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
+                                        '<td><div class="row"><div class="col-lg-2"><p><b>PO-</b></p></div><div class="col-lg-10"><input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' +
+                                        rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></div></div></td>' +
                                         '<td><input class="form-control" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' +
                                         rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
                                         '<td><input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' +
