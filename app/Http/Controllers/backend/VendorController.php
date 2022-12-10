@@ -54,7 +54,7 @@ class VendorController extends Controller
 
     public function store(Request $request)
     {
-        // dd   ($request->all());
+        // dd       ($request->all());
         $request->validate([
             // 'no_po.*' => 'required',
             // 'tanggal_po.*' => 'required',
@@ -141,7 +141,7 @@ class VendorController extends Controller
                     ]);
                 }else{
                     DB::rollback();
-                    return redirect()->route('vendor.create')->with('failed','Data Is Not Competible');
+                    return redirect()->route('vendor.create')->with('failed','Error Result Not Found');
                 }
             }
             // dd($vendorPivot);
@@ -151,7 +151,7 @@ class VendorController extends Controller
             return redirect()->route('vendor.create')->with('success','Vendor created successfully');
         } catch (\Throwable $th) {
             DB::rollback();
-            return redirect()->route('vendor.create')->with('failed','Data Is Not Competible');
+            return redirect()->route('vendor.create')->with('failed','Error Result Not Found');
         }
     }
 
