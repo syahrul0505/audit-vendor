@@ -18,6 +18,6 @@ class vendorPivot extends Model
 
     public function vendor()
     {
-        return $this->belongsTo(Vendor::class);
+        return $this->belongsTo(vsendor::class);
     }
 }

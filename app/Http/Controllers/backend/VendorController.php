@@ -4,8 +4,8 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vendor;
-use App\Models\VendorPivot;
+use App\Models\vendor;
+use App\Models\vendorPivot;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -47,13 +47,14 @@ class VendorController extends Controller
     public function create ()
     {
         $data['page_title'] = 'Tanda Terima';
-        $data['vendor'] = Vendor::get();
+        $data['vendor'] = vendor::get();
 
         return view('frontend.vendor.create', $data);
     }
 
     public function store(Request $request)
     {
+        // dd   ($request->all());
         $request->validate([
             // 'no_po.*' => 'required',
             // 'tanggal_po.*' => 'required',

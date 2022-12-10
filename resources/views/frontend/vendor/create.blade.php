@@ -27,7 +27,6 @@
                                 <form method="POST" action="{{ route('vendor.store') }}" id="formPO">
                                     @csrf
                                     <div class="card-body">
-
                                         @include('backend.components.form-message')
                                         <div class="card-body">
                                             {{-- <h4 class="card-title text-center">{{$page_title}}</h4> --}}
