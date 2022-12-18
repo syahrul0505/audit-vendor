@@ -134,7 +134,7 @@ class VendorController extends Controller
                         'tanggal_po' => $request->tanggal_po[$key],
                         'no_invoice' => $request->no_invoice[$key],
                         'tanggal_kirim' => $request->tanggal_kirim[$key],
-                        'name' => $check[0]->VENDOR,  
+                        // 'name' => $check[0]->VENDOR,  
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s')
                     ]);
