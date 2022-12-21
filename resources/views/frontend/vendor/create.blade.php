@@ -89,6 +89,10 @@
                                                                             placeholder="Tanggal Kirim" type="date"
                                                                             name="tanggal_kirim[]" id="qty1">
                                                                     </td>
+
+                                                                    <td>
+                                                                        <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Amount" type="text" name="amount[]" id="amount" >
+                                                                    </td>
                                                                     {{-- <td>
                                                                             <select class="form-select" id="">pending
                             
@@ -125,9 +129,9 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
 
-                                                    <div class="col-lg-8">
+                                                    <div class="col-lg-12">
                                                         <div class="form-group mb-3">
-                                                            <label for="">Email</label>
+                                                            <label for="">Email<small class="text-danger">*(Wajib Isi)</small></label>
                                                             <input
                                                                 class="form-control @error('email') is-invalid @enderror"
                                                                 type="email" name="email">
@@ -140,12 +144,45 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-8">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group mb-3">
+                                                            <label for="">Name Vendor <small class="text-danger">*(Wajib Isi)</small></label>
+                                                            <input
+                                                                class="form-control @error('name_vendor') is-invalid @enderror"
+                                                                type="name_vendor" name="name_vendor">
+
+                                                            @error('name_vendor')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
                                                         <div class="form-group mb-3">
                                                             <label for="">Note <small>(Optional)</small></label>
                                                             <textarea name="description" id="" cols="30" rows="7"
                                                                 class="form-control @error('description') is-invalid @enderror">{{old('description')}}</textarea>
                                                             @error('description')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="">Dibuat <small class="text-danger">*</small></label>
+                                                            <input
+                                                                class="form-control @error('dibuat') is-invalid @enderror"
+                                                                type="dibuat" name="dibuat">
+
+                                                            @error('dibuat')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
@@ -189,19 +226,18 @@
                             $("#contactTable").find('tbody')
                                 .append(
                                     $('<tr>' +
-                                        '<td><div class="row"><div class="col-lg-2"><p><b>PO-</b></p></div><div class="col-lg-10"><input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' +
-                                        rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></div></div></td>' +
-                                        '<td><input class="form-control" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' +
-                                        rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
-                                        '<td><input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' +
-                                        rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
-                                        '<td><input class="form-control" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' +
-                                        rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
+                                        '<td><div class="row"><div class="col-lg-2"><p><b>PO-</b></p></div><div class="col-lg-10"><input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></div></div></td>' +
+                                        '<td><input class="form-control" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
+                                        '<td><input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
+                                        '<td><input class="form-control" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
+                                        '<td><input class="form-control" placeholder="Amount" type="text" name="amount[]" id="amount' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
                                         '<td style="max-width: 6% !important"><button type="button" class="btn btn-outline-danger btn-remove" onclick="$(this).parent().parent().remove();changeOptionValue();"><i class="fa fa-minus"></i></button></td>' +
                                         '</tr>'
                                     )
                                 )
-                            changeOptionValue();
+                            // changeOptionValue();
+                $("#amount"+rowCount).inputmask({"mask": "9.999.999.999,99"});
+
                         }
 
                         function save() {
@@ -218,6 +254,8 @@
                             $('#total').val(harga * Number(qty));
 
                         }
+                            $(":input").inputmask();
+                            $("#amount").inputmask({"mask": "9.999.999.999,99"});
 
                     </script>
 
