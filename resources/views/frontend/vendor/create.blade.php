@@ -255,7 +255,7 @@
 
                         }
                             $(":input").inputmask();
-                            $("#amount").inputmask({"mask": "9.999.999.999,99"});
+                            $("#amount").inputmask({"mask": "999.999.999,99"});
 
                     </script>
 
