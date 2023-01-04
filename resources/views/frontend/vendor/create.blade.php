@@ -174,7 +174,7 @@
 
                                                 </div>
 
-                                                <div class="col-lg-6">
+                                                {{-- <div class="col-lg-6">
                                                     <div class="col-lg-6">
                                                         <div class="form-group mb-3">
                                                             <label for="">Dibuat <small class="text-danger">*</small></label>
@@ -189,7 +189,7 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                         <div class="card-footer" style="border-radius:0px 0px 10px 10px;background-color:#fff;">
