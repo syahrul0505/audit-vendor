@@ -63,7 +63,7 @@ class VendorController extends Controller
             'no_invoice' => 'required',
             'tanggal_kirim' => 'required',
             'name_vendor' => 'required',
-            'dibuat' => 'required',
+            // 'dibuat' => 'required',
             'email' => 'required',
         ]);
 
@@ -125,7 +125,7 @@ class VendorController extends Controller
             $vendor->email = $request->email;
             $vendor->description = $request->description;
             $vendor->name_vendor = $request->name_vendor;
-            $vendor->dibuat = $request->dibuat;
+            // $vendor->dibuat = $request->dibuat;
             $vendor->save();
             // $vendorPivot = [];
             // dd($vendor->id);
@@ -135,6 +135,7 @@ class VendorController extends Controller
                 $check = $this->checkAccr($request->no_po[$key],$request->tanggal_po[$key]); //iniuntuk apa buat pengecekan data nya sama atau ngga sama yang di Api
                 $replaceTitik = str_replace('.', '',$request->amount[$key]);
                 $replaceComma = str_replace(',', '',$replaceTitik);
+                $replaceGaris = str_replace('_', '',$replaceComma);
                 if ($check){
                     array_push($vendorPivot, [
                         'vendor_id' => $vendor->id,
@@ -142,7 +143,7 @@ class VendorController extends Controller
                         'tanggal_po' => $request->tanggal_po[$key],
                         'no_invoice' => $request->no_invoice[$key],
                         'tanggal_kirim' => $request->tanggal_kirim[$key],
-                        'amount' => $replaceComma,
+                        'amount' => $replaceGaris,
                         // 'name' => $check[0]->VENDOR,  
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s')
