@@ -5,6 +5,12 @@
     @include('backend.layouts.partials.head')
 </head>
 
+<style>
+    .trash{
+        margin-top: 27px;
+    }
+</style>
+
 <body data-sidebar="dark">
 
     <!-- ========== Loader ========== -->
@@ -78,7 +84,7 @@
                                                         <div id="stj">
                                                             <div class="row">
                                                                 <div class="col-lg-2">
-                                                                    <label for="">No PO</label>
+                                                                    <label for="">No PO (PO-)</label>
                                                                     <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="No Po" type="text"name="no_po[]" id="ponum">
                                                                 </div>
 
@@ -108,7 +114,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
+                                        {{-- <hr> --}}
                                         <div class="card-body">
 
                                             @include('backend.components.form-message')
@@ -211,14 +217,14 @@
                             var rowCount = $('#stj .row').length;
                             $("#stj")
                                 .append(
-                                    $('<hr>'+
+                                    $(''+
                                         '<div class="row"> ' +
-                                        '<div class="col-lg-2"> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
-                                        '<div class="col-lg-2"> <input class="form-control" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
-                                        '<div class="col-lg-2"> <input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
-                                        '<div class="col-lg-2"> <input class="form-control" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></div>' +
-                                        '<div class="col-10 col-lg-2"> <input class="form-control" placeholder="Amount" type="text" name="amount[]" id="amount' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
-                                        '<div class="col-2 col-lg-2"> <button type="button" class="btn btn-outline-danger btn-remove" onclick="$(this).parent().parent().remove();changeOptionValue();"><i class="fa fa-trash"></i></button> </div>' +
+                                        '<div class="col-lg-2"> <label for="">No PO (PO-)</label> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
+                                        '<div class="col-lg-2"> <label for="">Tanggal PO</label> <input class="form-control" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
+                                        '<div class="col-lg-2"> <label for="">No Invoice</label> <input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
+                                        '<div class="col-lg-2"> <label for="">Tanggal Kirim</label> <input class="form-control" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></div>' +
+                                        '<div class="col-10 col-lg-2"> <label for="">Amount </label> <input class="form-control" placeholder="Amount" type="text" name="amount[]" id="amount' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
+                                        '<div class="col-2 col-lg-2 trash"> <button type="button" class="btn btn-outline-danger btn-remove" onclick="$(this).parent().parent().remove();changeOptionValue();"><i class="fa fa-trash"></i></button> </div>' +
                                         '</div>'
                                     )
                                 )
