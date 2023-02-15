@@ -30,94 +30,80 @@
                                         @include('backend.components.form-message')
                                         <div class="card-body">
                                             {{-- <h4 class="card-title text-center">{{$page_title}}</h4> --}}
-                                            <h6> <small class="text-danger">*</small><b> Tanggal Kirim Sesuai Dengan
-                                                    tanggal surat jalan </b></h6>
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="my-auto"> 
+                                                    <small class="text-danger">*</small>
+                                                    <b> Tanggal Kirim Sesuai Dengan tanggal surat jalan </b>
+                                                </h6>
+                                                {{-- <div class="col-lg-2"> --}}
+                                                <button type="button" class="btn btn-outline-success" id="btn-add-document" onclick="addField()">
+                                                    <i class="fas fa-plus-square"> ADD</i>
+                                                </button>
+                                                    {{-- <span class="btn btn-primary" onclick="checkPO()">check</span> --}}
+                                                {{-- </div> --}}
+                                            </div>
                                             <hr>
                                             <div class="row mt-2">
                                                 <div class="col-lg-12">
-                                                    <div class="table-responsive">
+                                                    <div class="table">
                                                         <div class="row">
                                                             <div class="col-6">
                                                                 @include('backend.components.flash-message')
                                                             </div>
                                                         </div>
-                                                        <table class="table table-hover" id="contactTable">
-                                                            <thead>
-                                                                <tr>
-                                                                    {{-- <th>No Po</th> --}}
-                                                                    <th>No Po</th>
-                                                                    <th>Tanggal Po</th>
-                                                                    <th>No Inv</th>
-                                                                    <th>Tanggal Kirim</th>
-                                                                    {{-- <th>Status</th> --}}
-                                                                    {{-- <th>Description</th> --}}
-                                                                    <th>ACTION</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="row">
-                                                                            <div class="col-lg-2">
-                                                                                <p><b>PO-</b></p>
-                                                                            </div>
-                                                                            <div class="col-lg-10">
-                                                                                <input
-                                                                                    class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                                                                                    placeholder="No Po" type="text"
-                                                                                    name="no_po[]" id="ponum">
-    
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <input
-                                                                            class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                                                                            placeholder="Tanggal Po" type="date"
-                                                                            name="tanggal_po[]" id="po_date">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input
-                                                                            class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                                                                            placeholder="No Invoice" type="text"
-                                                                            name="no_invoice[]" id="qty1">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input
-                                                                            class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                                                                            placeholder="Tanggal Kirim" type="date"
-                                                                            name="tanggal_kirim[]" id="qty1">
-                                                                    </td>
 
-                                                                    <td>
-                                                                        <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Amount" type="text" name="amount[]" id="amount" >
-                                                                    </td>
-                                                                    {{-- <td>
-                                                                            <select class="form-select" id="">pending
-                            
-                                                                                <option value="">Pending</option>
-                                                                            </select>
-                                                                        </td> --}}
-                                                                    {{-- <td>
-                                                                            <textarea name="description" id="" cols="30" rows="7" class="form-control @error('description') is-invalid @enderror">{{old('description')}}</textarea>
-                                                                    @error('description')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                    @enderror
-                                                                    <td> --}}
-                                                                    <td>
-                                                                        <button type="button"
-                                                                            class="btn btn-outline-success"
-                                                                            id="btn-add-document" onclick="addField()">
-                                                                            <i class="fas fa-plus-square"></i>
-                                                                        </button>
-                                                                        {{-- <span class="btn btn-primary" onclick="checkPO()">check</span> --}}
-                                                                    <td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                        {{-- <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <label for="">No PO</label>
+                                                            </div>
+
+                                                            <div class="col-lg-2">
+                                                                <label for="">Tanggal PO</label>
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-2">
+                                                                <label for="">No Invoice</label>
+                                                            </div>
+
+                                                            <div class="col-lg-2">
+                                                                <label for="">Tanggal Kirim </label>
+                                                            </div>
+
+                                                            <div class="col-lg-2">
+                                                                <label for="">Amount</label>
+                                                            </div>
+                                                        </div> --}}
+                                                        
+                                                        <div id="stj">
+                                                            <div class="row">
+                                                                <div class="col-lg-2">
+                                                                    <label for="">No PO</label>
+                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="No Po" type="text"name="no_po[]" id="ponum">
+                                                                </div>
+
+                                                                <div class="col-lg-2">
+                                                                    <label for="">Tanggal PO</label>
+                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="po_date">
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-2">
+                                                                    <label for="">No Invoice</label>
+                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty1">
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-2">
+                                                                    <label for="">Tanggal Kirim</label>
+                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-2">
+                                                                    <label for="">Amount</label>
+                                                                    <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Amount" type="text" name="amount[]" id="amount" >
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -221,17 +207,18 @@
                         //     }
 
                         function addField() {
-                            var rowCount = $('#contactTable tr').length;
-                            $("#contactTable").find('tbody')
+                            var rowCount = $('#stj .row').length;
+                            $("#stj")
                                 .append(
-                                    $('<tr>' +
-                                        '<td><div class="row"><div class="col-lg-2"><p><b>PO-</b></p></div><div class="col-lg-10"><input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></div></div></td>' +
-                                        '<td><input class="form-control" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
-                                        '<td><input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
-                                        '<td><input class="form-control" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
-                                        '<td><input class="form-control" placeholder="Amount" type="text" name="amount[]" id="amount' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></td>' +
-                                        '<td style="max-width: 6% !important"><button type="button" class="btn btn-outline-danger btn-remove" onclick="$(this).parent().parent().remove();changeOptionValue();"><i class="fa fa-minus"></i></button></td>' +
-                                        '</tr>'
+                                    $('<hr>'+
+                                        '<div class="row"> ' +
+                                        '<div class="col-lg-2"> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
+                                        '<div class="col-lg-2"> <input class="form-control" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
+                                        '<div class="col-lg-2"> <input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
+                                        '<div class="col-lg-2"> <input class="form-control" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></div>' +
+                                        '<div class="col-10 col-lg-2"> <input class="form-control" placeholder="Amount" type="text" name="amount[]" id="amount' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
+                                        '<div class="col-2 col-lg-2"> <button type="button" class="btn btn-outline-danger btn-remove" onclick="$(this).parent().parent().remove();changeOptionValue();"><i class="fa fa-trash"></i></button> </div>' +
+                                        '</div>'
                                     )
                                 )
                             // changeOptionValue();
