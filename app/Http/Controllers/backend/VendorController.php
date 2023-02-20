@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Models\VendorPivot;
+use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -54,11 +55,12 @@ class VendorController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            "no_po.*" => "required|string|distinct|min:3",
-            'tanggal_po' => 'required',
-            'no_invoice' => 'required',
-            'tanggal_kirim' => 'required',
+        $validator = $request->validate([
+            "no_po" => "required|string|distinct|min:3",
+            'tanggal_po' => 'required|string|distinct|min:3',
+            'no_invoice' => 'required|string|distinct|min:3',
+            'tanggal_kirim' => 'required|string|distinct|min:3',
+            'amount' => 'required|string|distinct|min:3',
             'name_vendor' => 'required',
             'email' => 'required',
         ]);
