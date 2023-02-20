@@ -43,7 +43,7 @@
                                                 </h6>
                                                 {{-- <div class="col-lg-2"> --}}
                                                 <button type="button" class="btn btn-outline-success" id="btn-add-document" onclick="addField()">
-                                                    <i class="fas fa-plus-square"> ADD</i>
+                                                    <i class="fas fa-plus-square"> ADD PO</i>
                                                 </button>
                                                     {{-- <span class="btn btn-primary" onclick="checkPO()">check</span> --}}
                                                 {{-- </div> --}}
@@ -89,7 +89,7 @@
 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal PO</label>
-                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="po_date">
+                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="po_date">
                                                                 </div>
                                                                 
                                                                 <div class="col-lg-2">
@@ -99,12 +99,12 @@
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal Kirim</label>
-                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
+                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
                                                                 </div>
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Amount</label>
-                                                                    <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Amount" type="text" name="amount[]" id="amount" >
+                                                                    <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Amount" type="text" name="amount[]" id="input" >
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -195,6 +195,13 @@
                     </div>
                     @section('script')
                     <script>
+                        new AutoNumeric('#input', {
+                            currencySymbol : '',
+                            decimalCharacter : ',',
+                            digitGroupSeparator : '.',
+                        });
+                    </script>
+                    <script>
                         var qty = $('#qty').val();
                         var harga = $('#harga').val();
                         var total = parseInt(qty * harga);
@@ -216,19 +223,24 @@
                             var rowCount = $('#stj .row').length;
                             $("#stj")
                                 .append(
-                                    $(''+
-                                        '<div class="row"> ' +
-                                        '<div class="col-lg-2"> <label for="">No PO (PO-)</label> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
-                                        '<div class="col-lg-2"> <label for="">Tanggal PO</label> <input class="form-control" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
-                                        '<div class="col-lg-2"> <label for="">No Invoice</label> <input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
-                                        '<div class="col-lg-2"> <label for="">Tanggal Kirim</label> <input class="form-control" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"></div>' +
-                                        '<div class="col-10 col-lg-2"> <label for="">Amount </label> <input class="form-control" placeholder="Amount" type="text" name="amount[]" id="amount' + rowCount + '" onkeyup="calculatePrice(' + rowCount + ')"> </div>' +
-                                        '<div class="col-2 col-lg-2 trash"> <button type="button" class="btn btn-outline-danger btn-remove" onclick="$(this).parent().parent().remove();changeOptionValue();"><i class="fa fa-trash"></i></button> </div>' +
+                                    $(''+ 
+                                        '<div class="row style="border-bottom: 4px dotted blue;">  ' +
+                                        '<div class="col-lg-2"> <label for="">No PO (PO-)</label> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" > </div>' +
+                                        '<div class="col-lg-2"> <label for="">Tanggal PO</label> <input class="form-control" max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" > </div>' +
+                                        '<div class="col-lg-2"> <label for="">No Invoice</label> <input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" > </div>' +
+                                        '<div class="col-lg-2"> <label for="">Tanggal Kirim</label> <input class="form-control" max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" ></div>' +
+                                        '<div class="col-10 col-lg-2"> <label for="">Amount </label> <input class="form-control" placeholder="Amount" type="text" name="amount[]" id="input' + rowCount + '" > </div>' +
+                                        '<div class="col-2 col-lg-2 trash"> <button type="button" class="btn btn-outline-danger btn-remove" onclick="$(this).parent().parent().remove();"><i class="fa fa-trash"></i></button> </div>' +
+                                        '<div class=""> <hr> </div>' +
                                         '</div>'
                                     )
                                 )
-                            // changeOptionValue();
-                $("#amount"+rowCount).inputmask({"mask": "9.999.999.999,99"});
+                                new AutoNumeric('#input' + rowCount, {
+                                    currencySymbol : '',
+                                    decimalCharacter : ',',
+                                    digitGroupSeparator : '.',
+                                });
+                            // $("#amount"+rowCount);
 
                         }
 
@@ -240,12 +252,6 @@
                             $('#formPO').submit();
                         }
 
-                        function totalPo(number) {
-                            let qty = $('#qty').val();
-                            let harga = $('#harga').val();
-                            $('#total').val(harga * Number(qty));
-
-                        }
                             $(":input").inputmask();
                             $("#amount").inputmask({"mask": "999.999.999,99"});
 
