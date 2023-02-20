@@ -55,14 +55,11 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'no_po.*' => 'required',
-            // 'tanggal_po.*' => 'required',
-            'no_po' => 'required',
+            "no_po.*" => "required|string|distinct|min:3",
             'tanggal_po' => 'required',
             'no_invoice' => 'required',
             'tanggal_kirim' => 'required',
             'name_vendor' => 'required',
-            // 'dibuat' => 'required',
             'email' => 'required',
         ]);
 
@@ -131,7 +128,7 @@ class VendorController extends Controller
             $vendorPivot = [];
             foreach ($request->no_po as $key => $value) {
                 
-                $check = $this->checkAccr($request->no_po[$key],$request->tanggal_po[$key]); //iniuntuk apa buat pengecekan data nya sama atau ngga sama yang di Api
+                $check = $this->checkAccr($request->no_po[$key],$request->tanggal_po[$key]); // buat pengecekan data nya sama atau ngga sama yang di Api
                 $replaceTitik = str_replace('.', '',$request->amount[$key]);
                 $replaceComma = str_replace(',', '',$replaceTitik);
                 $replaceGaris = str_replace('_', '',$replaceComma);

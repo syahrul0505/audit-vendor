@@ -9,6 +9,9 @@
     .trash{
         margin-top: 27px;
     }
+    .textpo{
+        font-family: Poppins, sans-serif !important;
+    }
 </style>
 
 <body data-sidebar="dark">
@@ -28,13 +31,13 @@
                         <div class="col-lg-12 col-xl-12 col-sm-12">
                             <div class="card card-primary" style="border-radius:18px;">
                                 <div class="card-header text-center " style="border-radius:10px 10px 0px 0px;">
-                                    <h4 class="card-title">Tanda Terima</h4>
+                                    <h3 class="card-title" style="font-size: 35px; !important"> <b> Tanda Terima </b></h4>
                                 </div>
                                 <form method="POST" action="{{ route('vendor.store') }}" id="formPO">
                                     @csrf
                                     <div class="card-body">
 
-                                        @include('backend.components.form-message')
+                                        {{-- @include('backend.components.form-message') --}}
                                         <div class="card-body">
                                             {{-- <h4 class="card-title text-center">{{$page_title}}</h4> --}}
                                             <div class="d-flex justify-content-between">
@@ -43,8 +46,8 @@
                                                     <b> Tanggal Kirim Sesuai Dengan tanggal surat jalan </b>
                                                 </h6>
                                                 {{-- <div class="col-lg-2"> --}}
-                                                <button type="button" class="btn btn-outline-success" id="btn-add-document" onclick="addField()">
-                                                    <i class="fas fa-plus-square"> ADD PO</i>
+                                                <button type="button" class="btn btn-outline-primary" id="btn-add-document" onclick="addField()">
+                                                    <i class="fas fa-plus-square" > <span style="font-family: Poppins, sans-serif !important;"> ADD PO</span> </i>
                                                 </button>
                                                     {{-- <span class="btn btn-primary" onclick="checkPO()">check</span> --}}
                                                 {{-- </div> --}}
@@ -55,7 +58,7 @@
                                                     <div class="table">
                                                         <div class="row">
                                                             <div class="col-6">
-                                                                @include('backend.components.flash-message')
+                                                                {{-- @include('backend.components.flash-message') --}}
                                                             </div>
                                                         </div>
 
@@ -85,17 +88,35 @@
                                                             <div class="row">
                                                                 <div class="col-lg-2">
                                                                     <label for="">No PO (PO-)</label>
-                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="No Po" type="text"name="no_po[]" id="ponum">
+                                                                    <input class="form-control @error('no_po') is-invalid @enderror" placeholder="No Po" type="text"name="no_po[]" id="ponum">
+
+                                                                    @error('no_po')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                    @enderror
                                                                 </div>
 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal PO</label>
-                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="po_date">
+                                                                    <input class="form-control @error('tanggal_po') is-invalid @enderror" max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="po_date">
+
+                                                                    @error('tanggal_po')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">No Invoice</label>
-                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty1">
+                                                                    <input class="form-control {{ $errors->has('no_invoice') ? 'is-invalid' : '' }}" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty1">
+
+                                                                    @error('tanggal_po')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                                 
                                                                 <div class="col-lg-2">
@@ -104,8 +125,8 @@
                                                                 </div>
                                                                 
                                                                 <div class="col-lg-2">
-                                                                    <label for="">Amount</label>
-                                                                    <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Amount" type="text" name="amount[]" id="input" >
+                                                                    <label for="">Nominal (Rp)</label>
+                                                                    <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input" >
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -117,16 +138,14 @@
                                         {{-- <hr> --}}
                                         <div class="card-body">
 
-                                            @include('backend.components.form-message')
+                                            {{-- @include('backend.components.form-message') --}}
                                             <div class="row">
                                                 <div class="col-lg-6">
 
                                                     <div class="col-lg-12">
                                                         <div class="form-group mb-3">
                                                             <label for="">Email<small class="text-danger">*(Wajib Isi)</small></label>
-                                                            <input
-                                                                class="form-control @error('email') is-invalid @enderror"
-                                                                type="email" name="email">
+                                                            <input class="form-control @error('email') is-invalid @enderror" type="email" name="email">
 
                                                             @error('email')
                                                             <span class="invalid-feedback" role="alert">
@@ -166,6 +185,7 @@
 
                                                 </div>
 
+                                                
                                                 {{-- <div class="col-lg-6">
                                                     <div class="col-lg-6">
                                                         <div class="form-group mb-3">
@@ -185,11 +205,13 @@
                                             </div>
                                         </div>
                                         <div class="card-footer" style="border-radius:0px 0px 10px 10px;background-color:#fff;">
+                                            {{-- <button id="b5">Sweet alert</button> --}}
                                             <button type="submit" class="btn btn-success btn-footer"
                                                 onclick="save()">Submit</button>
                                             {{-- <a href="{{ route('backend.purchase_order.index') }}"
                                                 class="btn btn-secondary btn-footer">Back</a> --}}
                                         </div>
+
                                 </form>
                             </div>
                         </div>
@@ -201,12 +223,11 @@
                             decimalCharacter : ',',
                             digitGroupSeparator : '.',
                         });
+
+                        
                     </script>
                     <script>
-                        var qty = $('#qty').val();
-                        var harga = $('#harga').val();
-                        var total = parseInt(qty * harga);
-                        console.log(qty, harga);
+                      
                         //    function calculateTotal()
                         //     {
                         //         var qty = $('#qty').val();
@@ -219,19 +240,20 @@
 
 
                         //     }
-
+                            var nums = 1;
                         function addField() {
                             var rowCount = $('#stj .row').length;
                             $("#stj")
                                 .append(
                                     $(''+ 
                                         '<div class="row style="border-bottom: 4px dotted blue;">  ' +
-                                        '<div class="col-lg-2"> <label for="">No PO (PO-)</label> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" > </div>' +
+                                        '<div> <hr> </div> ' +
+                                        '<div class="col-lg-2"> <label for="">No PO (PO-) '+ nums +'</label> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" > </div>' +
                                         '<div class="col-lg-2"> <label for="">Tanggal PO</label> <input class="form-control" max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" > </div>' +
                                         '<div class="col-lg-2"> <label for="">No Invoice</label> <input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" > </div>' +
                                         '<div class="col-lg-2"> <label for="">Tanggal Kirim</label> <input class="form-control" max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" ></div>' +
-                                        '<div class="col-10 col-lg-2"> <label for="">Amount </label> <input class="form-control" placeholder="Amount" type="text" name="amount[]" id="input' + rowCount + '" > </div>' +
-                                        '<div class="col-2 col-lg-2 trash"> <button type="button" class="btn btn-outline-danger btn-remove" onclick="$(this).parent().parent().remove();"><i class="fa fa-trash"></i></button> </div>' +
+                                        '<div class="col-10 col-lg-2"> <label for="">Nominal (Rp) </label> <input class="form-control" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input' + rowCount + '" > </div>' +
+                                        '<div class="col-2 col-lg-2 trash"> <button type="button" class="btn btn-outline-danger btn-remove" onclick="confirmDelete(this, '+ nums++ +')"><i class="fa fa-trash"></i></button> </div>' +
                                         '<div class=""> <hr> </div>' +
                                         '</div>'
                                     )
@@ -241,8 +263,24 @@
                                     decimalCharacter : ',',
                                     digitGroupSeparator : '.',
                                 });
-                            // $("#amount"+rowCount);
+                        }
 
+                        function confirmDelete(val,num)
+                        {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "Do you want to delete thi PO(" + num + ")",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, delete it!',
+                                
+                                }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $(val).parent().parent().remove();
+                                }
+                                })
                         }
 
                         function save() {
@@ -257,6 +295,18 @@
                             $("#amount").inputmask({"mask": "999.999.999,99"});
 
                     </script>
+                    <script> 
+                        $(window).ready(function() {
+                        $("#formPO").on("keypress", function (event) {
+                            var keyPressed = event.keyCode || event.which;
+                            if (keyPressed === 13) {
+                                event.preventDefault();
+                                return false;
+                            }
+                        });
+                        });
+                  
+                    </script> 
 
                     @endsection
 
