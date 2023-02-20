@@ -110,9 +110,9 @@
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">No Invoice</label>
-                                                                    <input class="form-control {{ $errors->has('no_invoice') ? 'is-invalid' : '' }}" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty1">
+                                                                    <input class="form-control @error('no_invoice') is-invalid @enderror" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty1">
 
-                                                                    @error('tanggal_po')
+                                                                    @error('no_invoice')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
                                                                         </span>
@@ -121,12 +121,24 @@
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal Kirim</label>
-                                                                    <input class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
+                                                                    <input class="form-control @error('tanggal_kirim') is-invalid @enderror" max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
+
+                                                                    @error('tanggal_kirim')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Nominal (Rp)</label>
-                                                                    <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input" >
+                                                                    <input class="form-control @error('amount') is-invalid @enderror" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input" >
+
+                                                                    @error('amount')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                         </div>
