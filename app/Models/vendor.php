@@ -16,6 +16,6 @@ class vendor extends Model
 
     public function vendorPivot()
     {
-        return $this->hasMany(VendorPivot::class);
+        return $this->hasMany(vendorPivot::class);
     }
 }

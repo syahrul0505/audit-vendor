@@ -48,7 +48,7 @@ class VendorController extends Controller
     public function create ()
     {
         $data['page_title'] = 'Tanda Terima';
-        $data['vendor'] = Vendor::get();
+        $data['vendor'] = vendor::get();
 
         return view('frontend.vendor.create', $data);
     }

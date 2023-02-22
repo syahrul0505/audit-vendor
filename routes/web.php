@@ -25,7 +25,9 @@ Route::get('/', function () {
 })->name('vendor');
 
 // tentang jelantah
-Route::resource('vendor', VendorController::class);
+// Route::resource('vendor', VendorController::class);
+Route::get('/vendor-create', [VendorController::class, 'create'])->name('vendor.create');
+Route::post('/vendor-store', [VendorController::class, 'store'])->name('vendor.store');
 
 
 Route::get('/minyak', function () {
