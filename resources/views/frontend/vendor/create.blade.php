@@ -132,7 +132,7 @@
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Nominal (Rp)</label>
-                                                                    <input class="form-control @error('amount') is-invalid @enderror" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input" >
+                                                                    <input class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount[]') }}" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input" >
 
                                                                     @error('amount')
                                                                         <span class="invalid-feedback" role="alert">
@@ -157,7 +157,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="form-group mb-3">
                                                             <label for="">Email<small class="text-danger">*(Wajib Isi)</small></label>
-                                                            <input class="form-control @error('email') is-invalid @enderror" type="email" name="email">
+                                                            <input class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" type="email" name="email">
 
                                                             @error('email')
                                                             <span class="invalid-feedback" role="alert">
