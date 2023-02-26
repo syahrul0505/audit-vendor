@@ -52,13 +52,14 @@
                                                     {{-- <span class="btn btn-primary" onclick="checkPO()">check</span> --}}
                                                 {{-- </div> --}}
                                             </div>
+                                            <h3>List Of PO 1</h3>
                                             <hr>
                                             <div class="row mt-2">
                                                 <div class="col-lg-12">
                                                     <div class="table">
                                                         <div class="row">
                                                             <div class="col-6">
-                                                                {{-- @include('backend.components.flash-message') --}}
+                                                                @include('backend.components.flash-message')
                                                             </div>
                                                         </div>
 
@@ -88,57 +89,36 @@
                                                             <div class="row">
                                                                 <div class="col-lg-2">
                                                                     <label for="">No PO (PO-)</label>
-                                                                    <input class="form-control @error('no_po') is-invalid @enderror" placeholder="No Po" type="text"name="no_po[]" id="ponum">
+                                                                    <input class="form-control" placeholder="No Po" type="text"name="no_po[]" id="ponum">
 
-                                                                    @error('no_po')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                    @enderror
                                                                 </div>
 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal PO</label>
-                                                                    <input class="form-control @error('tanggal_po') is-invalid @enderror" max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="po_date">
+                                                                    <input class="form-control " max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="po_date">
 
-                                                                    @error('tanggal_po')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
+                                                                   
                                                                 </div>
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">No Invoice</label>
-                                                                    <input class="form-control @error('no_invoice') is-invalid @enderror" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty1">
+                                                                    <input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty1">
 
-                                                                    @error('no_invoice')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
+                                                                
                                                                 </div>
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal Kirim</label>
-                                                                    <input class="form-control @error('tanggal_kirim') is-invalid @enderror" max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
+                                                                    <input class="form-control " max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
 
-                                                                    @error('tanggal_kirim')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
+                                                                    
                                                                 </div>
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Nominal (Rp)</label>
-                                                                    <input class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount[]') }}" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input" >
+                                                                    <input class="form-control" value="{{ old('amount[]') }}" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input" >
 
-                                                                    @error('amount')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
+                                                                   
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -252,15 +232,15 @@
 
 
                         //     }
-                            var nums = 1;
+                            var nums = 2;
                         function addField() {
                             var rowCount = $('#stj .row').length;
                             $("#stj")
                                 .append(
                                     $(''+ 
                                         '<div class="row style="border-bottom: 4px dotted blue;">  ' +
-                                        '<div> <hr> </div> ' +
-                                        '<div class="col-lg-2"> <label for="">No PO (PO-) '+ nums +'</label> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" > </div>' +
+                                        '<div> <h3> List Po ' + nums +' </h3> <hr> </div> '  +
+                                        '<div class="col-lg-2"> <label for="">No PO (PO-) </label> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" > </div>' +
                                         '<div class="col-lg-2"> <label for="">Tanggal PO</label> <input class="form-control" max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" > </div>' +
                                         '<div class="col-lg-2"> <label for="">No Invoice</label> <input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" > </div>' +
                                         '<div class="col-lg-2"> <label for="">Tanggal Kirim</label> <input class="form-control" max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" ></div>' +
