@@ -52,7 +52,7 @@
                                                     {{-- <span class="btn btn-primary" onclick="checkPO()">check</span> --}}
                                                 {{-- </div> --}}
                                             </div>
-                                            <h3>List Of PO 1</h3>
+                                            <h3>List Of PO <label for="" id="list_po">1</label></h3>
                                             <hr>
                                             <div class="row mt-2">
                                                 <div class="col-lg-12">
@@ -229,12 +229,36 @@
                                             {{-- <a href="{{ route('backend.purchase_order.index') }}"
                                                 class="btn btn-secondary btn-footer">Back</a> --}}
                                         </div>
-
+                                        {{-- <a href="javascript:;" class="do-append">click me</a><br><br>
+                                        <append></append> --}}
                                 </form>
                             </div>
                         </div>
                     </div>
                     @section('script')
+                    <script>
+                        // xixixixi WaterMark KoembangJantan99
+                        $(document).ready(function () {
+                            $('.do-append').on('click', function () {
+                                var index = $('append div').length;
+                                $('append').append('<div><label></label><input type="text"> &emsp; <a href="javascript:;" class="delete" style="color: red">delete</a></div>');
+                                updateLabels();
+                            });
+                    
+                            $('append').on('click', '.delete', function (e) {
+                                $(e.target).closest('append div').remove();
+                                updateLabels();
+                            });
+                    
+                            function updateLabels() {
+                                var index = $('append div').length;
+                                for (var i = 0; i < index; i++) {
+                                    $($($('append div')[i]).find("label")[0]).text('Appended : ' + i);
+                                }
+                            }
+                        })
+                    
+                    </script>
                     <script>
                         new AutoNumeric('#input', {
                             currencySymbol : '',
@@ -261,20 +285,28 @@
                         var nums = 2;
                         function addField() {
                             let rowPoCount = $('.row-po').length;
-                            // console.log(rowPoCount + 1);
+                            console.log(rowPoCount + 1);
                             var rowCount = $('#stj .row').length;
+
+                            $(document).ready(function() {
+                                $('#list_po').text(function(i, oldText) {
+                                    return (rowCount+1);
+                                });
+                            });
+
+
                             $("#stj")
                                 .append(
                                     $(''+ 
                                         '<div class="row row-po">  ' +
-                                        '<div> <h3> List Of PO ' + nums  +' </h3> <hr> </div> '  +
+                                        '<div>  <hr> </div> '  +
                                         '<div class="col-lg-2"> <label for="">No PO (PO-) </label> <input class="form-control" placeholder="No Po" type="text" name="no_po[]" id="qty' + rowCount + '" > </div>' +
                                         '<div class="col-lg-2"> <label for="">Tanggal PO</label> <input class="form-control" max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty' + rowCount + '" > </div>' +
                                         '<div class="col-lg-2"> <label for="">No Invoice</label> <input class="form-control" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty' + rowCount + '" > </div>' +
                                         '<div class="col-lg-2"> <label for="">Tanggal Kirim</label> <input class="form-control" max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty' + rowCount + '" ></div>' +
                                         '<div class="col-10 col-lg-2"> <label for="">Nominal (Rp) </label> <input class="form-control" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input' + rowCount + '" > </div>' +
                                         '<div class="col-2 col-lg-2 trash"> <button type="button" class="btn btn-outline-danger btn-remove" onclick="confirmDelete(this, '+ nums++ +')"><i class="fa fa-trash"></i></button> </div>' +
-                                        '<div class=""> <hr> </div>' +
+                                        '<div class=""> </div>' +
                                         '</div>'
                                     )
                                 )
@@ -289,18 +321,27 @@
 
                         function confirmDelete(val,num)
                         {
+
+                            var rowCount = $('#stj .row').length;
                             Swal.fire({
                                 title: 'Are you sure?',
                                 text: "Do you want to delete thi PO(" + num + ")",
                                 icon: 'warning',
                                 showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
+                                confirmButtonColor: '#d33',
+                                cancelButtonColor: 'grey',
                                 confirmButtonText: 'Yes, delete it!',
                                 
                                 }).then((result) => {
                                 if (result.isConfirmed) {
                                     $(val).parent().parent().remove();
+
+                                    
+                                    $(document).ready(function() {
+                                        $('#list_po').text(function(i, oldText) {
+                                            return rowCount ;
+                                        });
+                                    });
                                 }
                                 })
                         }
