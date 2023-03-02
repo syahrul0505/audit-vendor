@@ -52,7 +52,7 @@
                                                     {{-- <span class="btn btn-primary" onclick="checkPO()">check</span> --}}
                                                 {{-- </div> --}}
                                             </div>
-                                            <h3>List Of PO <label for="" id="list_po">1</label></h3>
+                                            <h3>List Of PO <label for="" id="list_po">(1)</label></h3>
                                             <hr>
                                             <div class="row mt-2">
                                                 <div class="col-lg-12">
@@ -103,14 +103,7 @@
                                                                     <label for="">Tanggal PO</label>
                                                                     {{-- <input class="form-control @error('tanggal_po') is-invalid @enderror" data-date="" data-date-format="DD MMMM YYYY" max="9999-12-31" placeholder="dd/mm/yyyy" type="date" name="tanggal_po[]" id="po_date"> --}}
                                                                     <div class="input-group" id="datepicker2">
-                                                                        {{-- <input type="text" class="form-control @error('tanggal_po') is-invalid @enderror" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" max="9999-12-31"data-date-container='#datepicker2' data-provide="datepicker" data-date-autoclose="true"> --}}
-                                                                        <div class="input-group" id="datepicker2">
-                                                                            <input type="text" class="form-control" name="tanggal_po[]" placeholder="dd M, yyyy"
-                                                                                data-date-format="dd M, yyyy" data-date-container='#datepicker2' data-provide="datepicker"
-                                                                                data-date-autoclose="true">
-                        
-                                                                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                                                                        </div>
+                                                                        <input type="text" class="form-control @error('tanggal_po') is-invalid @enderror" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" max="9999-12-31"data-date-container='#datepicker2' data-provide="datepicker" data-date-autoclose="true">
                                                                     </div>
                                                                     @error('tanggal_po')
                                                                     <span class="invalid-feedback" role="alert">
@@ -135,12 +128,6 @@
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal Kirim</label>
                                                                     <input class="form-control @error('tanggal_kirim') is-invalid @enderror " max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
-                                                                    {{-- <div class="input-group" id="datepicker3">
-                                                                        <input type="text" class="form-control @error('tanggal_kirim') is-invalid @enderror" placeholder="dd/mm/yyyy"
-                                                                            data-date-format="dd/mm/yyyy" data-date-container='#datepicker3' data-provide="datepicker"
-                                                                            data-date-autoclose="true">
-                    
-                                                                    </div> --}}
                                                                     @error('tanggal_kirim')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -304,7 +291,7 @@
 
                             $(document).ready(function() {
                                 $('#list_po').text(function(i, oldText) {
-                                    return (rowCount+1);
+                                    return  "(" + (rowCount+1) + ")";
                                 });
                             });
 
@@ -335,10 +322,17 @@
 
                         function confirmDelete(val,num)
                         {
+                            var rowCount = $('#stj .row').length;
+                                    
+                                    $(document).ready(function() {
+                                        $('#list_po').text(function(i, oldText) {
+                                            return rowCount ;
+                                        });
+                                    });
 
                             Swal.fire({
                                 title: 'Are you sure?',
-                                text: "Do you want to delete thi PO(" + num + ")",
+                                text: "Do you want to delete thi PO(" + rowCount + ")",
                                 icon: 'warning',
                                 showCancelButton: true,
                                 confirmButtonColor: '#d33',
@@ -353,7 +347,7 @@
                                     
                                     $(document).ready(function() {
                                         $('#list_po').text(function(i, oldText) {
-                                            return rowCount ;
+                                            return "(" + (rowCount) + ")" ;
                                         });
                                     });
                                 }

@@ -55,26 +55,26 @@ class VendorController extends Controller
 
     public function store(Request $request)
     {
-        // $validator = $request->validate([
-        //     "no_po" => "required|string|distinct|min:3",
-        //     'tanggal_po' => 'required|string|distinct|min:3',
-        //     'no_invoice' => 'required|string|distinct|min:3',
-        //     'tanggal_kirim' => 'required|string|distinct|min:3',
-        //     'amount' => 'required|string|distinct|min:3',
-        //     'name_vendor' => 'required',
-        //     'email' => 'required',
-        // ]);
-
-        $request->validate([
-            "no_po" => "required",
-            'tanggal_po' => 'required',
-            'no_invoice' => 'required',
-            // 'tanggal_kirim' => 'required',
-            'amount' => 'required',
+        $validator = $request->validate([
+            "no_po" => "required|array|min:3",
+            'tanggal_po' => 'required|array|min:3',
+            'no_invoice' => 'required|array|min:3',
+            'tanggal_kirim' => 'required|array|min:3',
+            'amount' => 'required|array|min:3',
             'name_vendor' => 'required',
             'email' => 'required',
-           
         ]);
+
+        // $request->validate([
+        //     "no_po" => "required",
+        //     'tanggal_po' => 'required',
+        //     'no_invoice' => 'required',
+        //     // 'tanggal_kirim' => 'required',
+        //     'amount' => 'required',
+        //     'name_vendor' => 'required',
+        //     'email' => 'required',
+           
+        // ]);
 
         // foreach ($request->no_po as $key => $value) {
         //     $vendor = new Vendor();
