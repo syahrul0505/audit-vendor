@@ -9,7 +9,7 @@
 
         <!-- ========== Loader ========== -->
         <div class="loader d-flex justify-content-center">
-            <img class="d-block my-auto" src="{{ asset('img/loader.gif') }}" width="250" height="auto" alt="">
+            {{-- <img class="d-block my-auto" src="{{ asset('img/loader.gif') }}" width="250" height="auto" alt=""> --}}
         </div>
         <!-- ========== End Loader ========== -->
 

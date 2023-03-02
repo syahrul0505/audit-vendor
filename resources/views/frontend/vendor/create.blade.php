@@ -89,8 +89,8 @@
                                                             <div class="row row-po">
                                                                 <div class="col-lg-2">
                                                                     <label for="">No PO (PO-)</label>
-                                                                    <input class="form-control @error('no_po') is-invalid @enderror" placeholder="No Po" type="text"name="no_po[]" id="ponum">
-
+                                                                    <input class="form-control @error('no_po') is-invalid @enderror"  placeholder="No Po" type="text"name="no_po[]" id="ponum">
+                                                                    
                                                                     @error('no_po')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -101,8 +101,17 @@
 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal PO</label>
-                                                                    <input class="form-control @error('tanggal_po') is-invalid @enderror" max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="po_date">
-
+                                                                    {{-- <input class="form-control @error('tanggal_po') is-invalid @enderror" data-date="" data-date-format="DD MMMM YYYY" max="9999-12-31" placeholder="dd/mm/yyyy" type="date" name="tanggal_po[]" id="po_date"> --}}
+                                                                    <div class="input-group" id="datepicker2">
+                                                                        {{-- <input type="text" class="form-control @error('tanggal_po') is-invalid @enderror" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" max="9999-12-31"data-date-container='#datepicker2' data-provide="datepicker" data-date-autoclose="true"> --}}
+                                                                        <div class="input-group" id="datepicker2">
+                                                                            <input type="text" class="form-control" name="tanggal_po[]" placeholder="dd M, yyyy"
+                                                                                data-date-format="dd M, yyyy" data-date-container='#datepicker2' data-provide="datepicker"
+                                                                                data-date-autoclose="true">
+                        
+                                                                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                                                        </div>
+                                                                    </div>
                                                                     @error('tanggal_po')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -114,7 +123,7 @@
                                                                 <div class="col-lg-2">
                                                                     <label for="">No Invoice</label>
                                                                     <input class="form-control @error('no_invoice') is-invalid @enderror" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty1">
-
+                                                                    
                                                                     @error('no_invoice')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -126,7 +135,12 @@
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal Kirim</label>
                                                                     <input class="form-control @error('tanggal_kirim') is-invalid @enderror " max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
-
+                                                                    {{-- <div class="input-group" id="datepicker3">
+                                                                        <input type="text" class="form-control @error('tanggal_kirim') is-invalid @enderror" placeholder="dd/mm/yyyy"
+                                                                            data-date-format="dd/mm/yyyy" data-date-container='#datepicker3' data-provide="datepicker"
+                                                                            data-date-autoclose="true">
+                    
+                                                                    </div> --}}
                                                                     @error('tanggal_kirim')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -237,7 +251,7 @@
                     </div>
                     @section('script')
                     <script>
-                        // xixixixi WaterMark KoembangJantan99
+                        
                         $(document).ready(function () {
                             $('.do-append').on('click', function () {
                                 var index = $('append div').length;
@@ -322,7 +336,6 @@
                         function confirmDelete(val,num)
                         {
 
-                            var rowCount = $('#stj .row').length;
                             Swal.fire({
                                 title: 'Are you sure?',
                                 text: "Do you want to delete thi PO(" + num + ")",
@@ -332,10 +345,11 @@
                                 cancelButtonColor: 'grey',
                                 confirmButtonText: 'Yes, delete it!',
                                 
-                                }).then((result) => {
+                            }).then((result) => {
                                 if (result.isConfirmed) {
                                     $(val).parent().parent().remove();
-
+                                    
+                                    var rowCount = $('#stj .row').length;
                                     
                                     $(document).ready(function() {
                                         $('#list_po').text(function(i, oldText) {

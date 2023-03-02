@@ -69,7 +69,7 @@ class VendorController extends Controller
             "no_po" => "required",
             'tanggal_po' => 'required',
             'no_invoice' => 'required',
-            'tanggal_kirim' => 'required',
+            // 'tanggal_kirim' => 'required',
             'amount' => 'required',
             'name_vendor' => 'required',
             'email' => 'required',
