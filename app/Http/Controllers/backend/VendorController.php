@@ -55,12 +55,18 @@ class VendorController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validator = $request->validate([
-            "no_po" => "required|array|min:3",
-            'tanggal_po' => 'required|array|min:3',
-            'no_invoice' => 'required|array|min:3',
-            'tanggal_kirim' => 'required|array|min:3',
-            'amount' => 'required|array|min:3',
+            "no_po" => 'required',
+            "no_po.*" => 'required',
+            'tanggal_po' => 'required',
+            'tanggal_po.*' => 'required',
+            'no_invoice' => 'required',
+            'no_invoice.*' => 'required',
+            'tanggal_kirim' => 'required',
+            'tanggal_kirim.*' => 'required',
+            'amount' => 'required',
+            'amount.*' => 'required',
             'name_vendor' => 'required',
             'email' => 'required',
         ]);
@@ -145,6 +151,7 @@ class VendorController extends Controller
                 $replaceTitik = str_replace('.', '',$request->amount[$key]);
                 $replaceComma = str_replace(',', '',$replaceTitik);
                 $replaceGaris = str_replace('_', '',$replaceComma);
+                // dd($check);
                 if ($check){
                     array_push($vendorPivot, [
                         'vendor_id' => $vendor->id,
