@@ -58,15 +58,15 @@ class VendorController extends Controller
         // dd($request->all());
         $validator = $request->validate([
             "no_po" => 'required',
-            "no_po.*" => 'required',
+            // "no_po.*" => 'required',
             'tanggal_po' => 'required',
-            'tanggal_po.*' => 'required',
+            // 'tanggal_po.*' => 'required',
             'no_invoice' => 'required',
-            'no_invoice.*' => 'required',
+            // 'no_invoice.*' => 'required',
             'tanggal_kirim' => 'required',
-            'tanggal_kirim.*' => 'required',
+            // 'tanggal_kirim.*' => 'required',
             'amount' => 'required',
-            'amount.*' => 'required',
+            // 'amount.*' => 'required',
             'name_vendor' => 'required',
             'email' => 'required',
         ]);
