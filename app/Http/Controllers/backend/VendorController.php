@@ -4,7 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vendor;
+use App\Models\vendor;
 use App\Models\VendorPivot;
 use Validator;
 use Illuminate\Support\Facades\DB;
