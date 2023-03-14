@@ -86,75 +86,6 @@
                                                         </div> --}}
                                                         
                                                         
-                                                        @if (old('no_po'))
-                                                        @foreach (old('no_po') as $key => $value)
-                                                        <div id="stj">
-                                                            <div class="row row-po">
-                                                                
-                                                                <div class="col-lg-2">
-                                                                    <label for="">No PO (PO-)</label>
-                                                                    <input class="form-control @error('no_po.*') is-invalid @enderror" value="" placeholder="No Po" type="text"name="no_po[]" id="ponum">
-                                                                    
-                                                                    @error('no_po.*')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                    @enderror
-
-                                                                </div>
-                                                                
-
-                                                                <div class="col-lg-2">
-                                                                    <label for="">Tanggal PO</label>
-                                                                    {{-- <input class="form-control @error('tanggal_po') is-invalid @enderror" data-date="" data-date-format="DD MMMM YYYY" max="9999-12-31" placeholder="dd/mm/yyyy" type="date" name="tanggal_po[]" id="po_date"> --}}
-                                                                        <input class="form-control @error('tanggal_po.*') is-invalid @enderror " max="9999-12-31" placeholder="Tanggal Po" type="date" name="tanggal_po[]" id="qty1">
-                                                                    @error('tanggal_po.*')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                    @enderror
-
-                                                                </div>
-                                                                
-                                                                <div class="col-lg-2">
-                                                                    <label for="">No Invoice</label>
-                                                                    <input class="form-control @error('no_invoice.*') is-invalid @enderror" placeholder="No Invoice" type="text" name="no_invoice[]" id="qty1">
-                                                                    
-                                                                    @error('no_invoice.*')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-
-                                                                </div>
-                                                                
-                                                                <div class="col-lg-2">
-                                                                    <label for="">Tanggal Kirim</label>
-                                                                    <input class="form-control @error('tanggal_kirim.*') is-invalid @enderror " max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
-                                                                    @error('tanggal_kirim.*')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                    @enderror
-
-                                                                </div>
-                                                                
-                                                                <div class="col-lg-2">
-                                                                    <label for="">Nominal (Rp)</label>
-                                                                    <input class="form-control @error('amount.*') is-invalid @enderror" value="{{ old('amount[]') }}" placeholder="Nominal (Rp)" type="text" name="amount[]" id="input" >
-
-                                                                    @error('amount.*')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                    @enderror
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        @endforeach
-                                                        @else
                                                         <div id="stj">
                                                             <div class="row row-po">
                                                                 
@@ -173,7 +104,6 @@
 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal PO</label>
-                                                                    {{-- <input class="form-control @error('tanggal_po') is-invalid @enderror" data-date="" data-date-format="DD MMMM YYYY" max="9999-12-31" placeholder="dd/mm/yyyy" type="date" name="tanggal_po[]" id="po_date"> --}}
                                                                     <div class="input-group" id="datepicker2">
                                                                         <input type="text" class="form-control @error('tanggal_po') is-invalid @enderror" name="tanggal_po[]" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" max="9999-12-31"data-date-container='#datepicker2' data-provide="datepicker" data-date-autoclose="true">
                                                                     </div>
@@ -222,7 +152,6 @@
 
                                                             </div>
                                                         </div>
-                                                        @endif
                                                     </div>
 
                                                 </div>
