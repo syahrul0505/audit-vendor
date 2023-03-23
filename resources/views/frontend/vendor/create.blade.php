@@ -129,7 +129,9 @@
                                                                 
                                                                 <div class="col-lg-2">
                                                                     <label for="">Tanggal Kirim</label>
+                                                                    <div class="input-group" id="datepicker2">
                                                                     <input class="form-control @error('tanggal_kirim') is-invalid @enderror " max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
+                                                                </div>
                                                                     @error('tanggal_kirim')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
