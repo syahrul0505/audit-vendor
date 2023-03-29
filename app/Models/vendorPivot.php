@@ -9,7 +9,6 @@ class vendorPivot extends Model
 {
     use HasFactory;
 
-    use HasFactory;
 
     protected $table = 'vendorr_pivot';
     
@@ -18,6 +17,6 @@ class vendorPivot extends Model
 
     public function vendor()
     {
-        return $this->belongsTo(vsendor::class);
+        return $this->belongsTo(vendor::class);
     }
 }

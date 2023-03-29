@@ -5,7 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\vendor;
-use App\Models\VendorPivot;
+use App\Models\vendorPivot;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -48,7 +48,7 @@ class VendorController extends Controller
     public function create ()
     {
         $data['page_title'] = 'Tanda Terima';
-       // $data['vendor'] = vendor::get();
+        $data['vendor'] = vendor::get();
 
         return view('frontend.vendor.create', $data);
     }
@@ -56,31 +56,31 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $validator = $request->validate([
-            "no_po" => 'required',
-            // "no_po.*" => 'required',
-            'tanggal_po' => 'required',
-            // 'tanggal_po.*' => 'required',
-            'no_invoice' => 'required',
-            // 'no_invoice.*' => 'required',
-            'tanggal_kirim' => 'required',
-            // 'tanggal_kirim.*' => 'required',
-            'amount' => 'required',
-            // 'amount.*' => 'required',
-            'name_vendor' => 'required',
-            'email' => 'required',
-        ]);
-
-        // $request->validate([
-        //     "no_po" => "required",
+        // $validator = $request->validate([
+        //     "no_po" => 'required',
+        //     // "no_po.*" => 'required',
         //     'tanggal_po' => 'required',
+        //     // 'tanggal_po.*' => 'required',
         //     'no_invoice' => 'required',
-        //     // 'tanggal_kirim' => 'required',
+        //     // 'no_invoice.*' => 'required',
+        //     'tanggal_kirim' => 'required',
+        //     // 'tanggal_kirim.*' => 'required',
         //     'amount' => 'required',
+        //     // 'amount.*' => 'required',
         //     'name_vendor' => 'required',
         //     'email' => 'required',
-           
         // ]);
+
+        $request->validate([
+            "no_po" => "required",
+            'tanggal_po' => 'required',
+            'no_invoice' => 'required',
+            'tanggal_kirim' => 'required',
+            'amount' => 'required',
+            'name_vendor' => 'required',
+            'email' => 'required',
+           
+        ]);
 
         // foreach ($request->no_po as $key => $value) {
         //     $vendor = new Vendor();
@@ -152,7 +152,7 @@ class VendorController extends Controller
                 $replaceComma = str_replace(',', '',$replaceTitik);
                 $replaceGaris = str_replace('_', '',$replaceComma);
                 // dd($check);
-                if ($check){
+                // if ($check){
                     array_push($vendorPivot, [
                         'vendor_id' => $vendor->id,
                         'no_po' => $request->no_po[$key],
@@ -164,17 +164,17 @@ class VendorController extends Controller
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s')
                     ]);
-                }
+                // }
              
             }
             // dd($vendorPivot);
             // dd($vendorPivot);
-            VendorPivot::insert($vendorPivot);
+            vendorPivot::insert($vendorPivot);
             DB::commit();
             return redirect()->route('vendor.create')->with('success','Vendor created successfully');
         } catch (\Throwable $th) {
             DB::rollback();
-            return redirect()->route('vendor.create')->with('failed','Error Result Not Found');
+            return redirect()->route('vendor.create')->with('failed', $th->getMessage());
         }
     }
 
