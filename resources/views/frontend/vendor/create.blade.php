@@ -129,9 +129,9 @@
                                                                     
                                                                     <div class="col-lg-2">
                                                                         <label for="">Tanggal Kirim</label>
-									<div class="input-group" id="datepicker2">
-                                                                        <input class="form-control @error('tanggal_kirim') is-invalid @enderror " max="9999-12-31" placeholder="Tanggal Kirim" type="date" name="tanggal_kirim[]" id="qty1">
-									</div>
+                                                                        <div class="input-group" id="datepicker2">
+                                                                            <input type="text" class="form-control @error('tanggal_kirim') is-invalid @enderror" name="tanggal_kirim[]" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" max="9999-12-31" data-date-container='#datepicker2' data-provide="datepicker" data-date-autoclose="true">
+                                                                        </div>
                                                                         @error('tanggal_kirim')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
